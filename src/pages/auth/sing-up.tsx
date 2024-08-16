@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const signUpForm = z.object({
     restaurantName: z.string(),
@@ -19,23 +19,27 @@ const signUpForm = z.object({
 type SignUpForm = z.infer<typeof signUpForm>
 
 export function SignUp() {
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
+  const navigate = useNavigate()
+
+    const { 
+      register, 
+      handleSubmit, 
+      formState: { isSubmitting }, 
+    } = useForm<SignUpForm>()
 
   async function handleSignUp(data: SignUpForm) {
     try {
-    
-    console.log(data)
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        toast.success('Enviamos um link de autenticação para seu e-mail.', {
+        toast.success("Restaurante cadastrado com sucesso!", {
           action: {
-            label: "Reenviar",
-            onClick: () => handleSignUp(data),
-          }
+            label: "Login",
+            onClick: () => navigate("/sign-in")
+          },
         })
       } catch {
-        toast.error("Credenciais inválidas.")
+        toast.error("Erro ao cadastrar restaurante.")
       }
      }
 
@@ -69,7 +73,7 @@ export function SignUp() {
             </div>
 
             <div className="space-y-2">
-            <Label htmlFor="managerName">Seu e-mail</Label>
+            <Label htmlFor="managerName">Seu nome</Label>
             <Input 
             id="managerName" 
             type="text" 
