@@ -3,6 +3,7 @@ import { MonthCanceledOrdersAmountCard } from "./cards/month-canceled-orders-amo
 import { MonthOrdersAmountCard } from "./cards/month-orders-amount-card";
 import { MonthRevenueCard } from "./cards/month-revenue-card";
 import { Helmet } from "react-helmet-async";
+import { RevenueChart } from "./cards/revenue-chart";
 
 export function Dashboard() {
     return <>
@@ -15,6 +16,10 @@ export function Dashboard() {
             <MonthOrdersAmountCard />
             <DayOrdersAmountCard />
             <MonthCanceledOrdersAmountCard />
+        </div>
+
+        <div className="grid grid-cols-9 gap-4">
+            <RevenueChart />
         </div>
     </div>
     </>
