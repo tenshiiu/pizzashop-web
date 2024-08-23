@@ -101,7 +101,7 @@ export function SignUp() {
               </Button>
 
             <p className="px-6 text-center text-sm leading-relaxed text-muted-foreground">
-              Ao continuar, você concordar com nossos 
+              Ao continuar, você concordar com nossos {' '}
               <a className="underline underline-offset-4" href="#">Termos de serviço</a>
               {' '} e {' '}
               <a className="underline underline-offset-4" href="#">Políticas de privacidade</a>.

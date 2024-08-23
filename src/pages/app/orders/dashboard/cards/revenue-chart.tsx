@@ -29,6 +29,7 @@ export function RevenueChart() {
                 <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16}/>
 
                 <YAxis 
+                className="pr-4"
                 stroke="#888"
                 axisLine={false}
                 tickLine={false}
