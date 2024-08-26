@@ -4,8 +4,21 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 
 import { Button } from "./button";
 import { Building, ChevronDown, LogOut } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "@/api/get-profile";
 
 export function AccountMenu() {
+  const { data: profile } = useQuery({
+    queryKey: ['profie'],
+    queryFn: getProfile,
+  })
+
+  const { data: managedRestaurant } = useQuery({
+    queryKey: ['managed-restaurant'],
+    queryFn: getProfile,
+  })
+
+
     return (
         <div>
             <DropdownMenu>
@@ -14,7 +27,7 @@ export function AccountMenu() {
             variant="outline" 
             className="flex items-center gap-2 select-none"
             >
-                Pizza Shop
+                {managedRestaurant?.name}
                 <ChevronDown className="h-4 w-4" />
             </Button>
                 </DropdownMenuTrigger>
