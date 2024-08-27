@@ -7,6 +7,8 @@ import { Building, ChevronDown, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/get-profile";
 import { Skeleton } from "./skeleton";
+import { Dialog, DialogTrigger } from "./dialog";
+import { StoreProfileDialog } from "../store-profile-dialog";
 
 export function AccountMenu() {
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
@@ -21,7 +23,7 @@ export function AccountMenu() {
 
 
     return (
-        <div>
+        <Dialog>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
             <Button 
@@ -49,16 +51,20 @@ export function AccountMenu() {
                     )}
                   </DropdownMenuLabel>
                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Building className="w-4 h-4 mr-2"/>
-                <span>Perfil da loja</span>
-                  </DropdownMenuItem>
+                  <DialogTrigger asChild>
+                    <DropdownMenuItem>
+                      <Building className="w-4 h-4 mr-2"/>
+                          <span>Perfil da loja</span>
+                    </DropdownMenuItem>
+                  </DialogTrigger>
                   <DropdownMenuItem className="text-rose-500 dark:text-rose-400">
                     <LogOut className="w-4 h-4 mr-2"/>
                 <span>Sair</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-        </div>
+
+            <StoreProfileDialog />
+        </Dialog>
     )
 }
