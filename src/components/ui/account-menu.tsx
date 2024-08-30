@@ -1,19 +1,22 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger, DropdownMenuSeparator } from "./dropdown-menu";
-import { Button } from "./button";
+
 import { Building, ChevronDown, LogOut } from "lucide-react";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/get-profile";
-import { Skeleton } from "./skeleton";
-import { Dialog, DialogTrigger } from "./dialog";
 import { StoreProfileDialog } from "../store-profile-dialog";
 import { signOut } from "@/api/sign-out";
+
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
+import { Button } from "./button";
+import { Skeleton } from "./skeleton";
+import { Dialog, DialogTrigger } from "./dialog";
 
 export function AccountMenu() {
   const navigate = useNavigate()
 
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
-    queryKey: ['profie'],
+    queryKey: ['profile'],
     queryFn: getProfile,
   })
 
