@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { OrderTableRow } from "./order-table-row";
-import { OrderTableFilter } from "./order-table-filter";
+import { OrderTableRow } from "./dashboard/order-info/order-table-row";
+import { OrderTableFilter } from "./dashboard/order-info/order-table-filter";
 import { Pagination } from "@/components/ui/pagination";
 import { useQuery } from "@tanstack/react-query";
 import { getOrders } from "@/api/get-orders";
