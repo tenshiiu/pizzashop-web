@@ -1,18 +1,37 @@
+import { getDailyRevenueInPeriod } from "@/api/get-daily-revenue-in-period";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from "recharts";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
+import { Label } from "@/components/ui/label";
+import { useQuery } from "@tanstack/react-query";
+import { subDays } from "date-fns";
+import { useMemo, useState } from "react";
+import { DateRange } from "react-day-picker";
+import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line } from "recharts";
 import colors from "tailwindcss/colors";
 
-const data = [
-    { date: "20/08", revenue: 1200 },
-    { date: "21/08", revenue: 800 },
-    { date: "22/08", revenue: 900 },
-    { date: "23/08", revenue: 400 },
-    { date: "24/08", revenue: 2300 },
-    { date: "25/08", revenue: 800 },
-    { date: "26/08", revenue: 640 },
-]
-
 export function RevenueChart() {
+    const [dateRange, setDateRange ] = useState<DateRange | undefined>({
+        from: subDays(new Date(), 7),
+        to: new Date(),
+    })
+
+    const { data: dailyRevenueInPeriod } = useQuery({
+       queryKey: ['metrics', 'daily-receipt-in-period', dateRange],
+       queryFn: () => getDailyRevenueInPeriod({
+        from: dateRange?.from,
+        to: dateRange?.to
+       }),
+    })
+
+    const chartData = useMemo(() => {
+        return dailyRevenueInPeriod?.map((chartItem) => {
+            return {
+                date: chartItem.date, 
+                receipt: chartItem.receipt / 100,
+            }
+        })
+    }, [dailyRevenueInPeriod])
+
     return (
         <Card className="col-span-6">
         <CardHeader className="flex-row items-center justify-between pb-8">
@@ -22,10 +41,16 @@ export function RevenueChart() {
              </CardTitle>
              <CardDescription>Receita diária no período</CardDescription>
             </div>
+
+            <div className="flex items-center gap-3">
+                <Label>Período</Label>
+                <DateRangePicker date={dateRange} onDateChange={setDateRange}/>
+            </div>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={240}>
-            <LineChart data={data} style={{ fontSize: 12 }}>
+          {chartData && (
+            <ResponsiveContainer width="100%" height={240}>
+            <LineChart data={chartData} style={{ fontSize: 12 }}>
                 <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16}/>
 
                 <YAxis 
@@ -46,12 +71,13 @@ export function RevenueChart() {
                 <Line 
                 type="linear" 
                 strokeWidth={2} 
-                dataKey="revenue" 
+                dataKey="receipt" 
                 stroke={colors.violet["400"]} 
                 />
 
             </LineChart>
           </ResponsiveContainer>
+          )}
         </CardContent>
         </Card>
     )

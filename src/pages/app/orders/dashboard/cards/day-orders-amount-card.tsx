@@ -22,7 +22,7 @@ export function DayOrdersAmountCard() {
             <p className="text-xs text-muted-foreground">
                 {dayOrdersAmount.diffFromYesterday >= 0 ? (
                     <>
-                    <span className="text-rose-500 dark:text-rose-400">+{dayOrdersAmount.diffFromYesterday}%</span>{' '}
+                    <span className="text-emerald-500 dark:text-emerald-400">+{dayOrdersAmount.diffFromYesterday}%</span>{' '}
                     em relação à ontem
                     </>
                 ) : (
