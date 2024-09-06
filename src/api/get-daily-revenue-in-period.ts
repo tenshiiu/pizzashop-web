@@ -16,8 +16,8 @@ export async function getDailyRevenueInPeriod({ from, to }: GetDailyRevenueInPer
             params: {
                 from,
                 to,
-            },
-        },
+            }
+        }
     )
 
     return response.data

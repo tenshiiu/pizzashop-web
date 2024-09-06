@@ -10,27 +10,27 @@ import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line } fro
 import colors from "tailwindcss/colors";
 
 export function RevenueChart() {
-    const [dateRange, setDateRange ] = useState<DateRange | undefined>({
+    const [dateRange, setDateRange] = useState<DateRange | undefined>({
         from: subDays(new Date(), 7),
         to: new Date(),
     })
 
-    const { data: dailyRevenueInPeriod } = useQuery({
-       queryKey: ['metrics', 'daily-receipt-in-period', dateRange],
-       queryFn: () => getDailyRevenueInPeriod({
-        from: dateRange?.from,
-        to: dateRange?.to
-       }),
+    const { data: DailyRevenueInPeriod } = useQuery({
+        queryKey: ['metrics', 'daily-revenue-in-period', dateRange],
+        queryFn: () => getDailyRevenueInPeriod({
+            from: dateRange?.from,
+            to: dateRange?.to,
+        }),
     })
 
     const chartData = useMemo(() => {
-        return dailyRevenueInPeriod?.map((chartItem) => {
+        return DailyRevenueInPeriod?.map(chartItem => {
             return {
-                date: chartItem.date, 
+                date: chartItem.date,
                 receipt: chartItem.receipt / 100,
             }
         })
-    }, [dailyRevenueInPeriod])
+    }, [DailyRevenueInPeriod])
 
     return (
         <Card className="col-span-6">
@@ -42,13 +42,13 @@ export function RevenueChart() {
              <CardDescription>Receita diária no período</CardDescription>
             </div>
 
-            <div className="flex items-center gap-3">
-                <Label>Período</Label>
-                <DateRangePicker date={dateRange} onDateChange={setDateRange}/>
-            </div>
+                <div className="flex items-center gap-3">
+                    <Label>Período</Label>
+                    <DateRangePicker date={dateRange} onDateChange={setDateRange}/>
+                </div>
         </CardHeader>
         <CardContent>
-          {chartData && (
+           {chartData && (
             <ResponsiveContainer width="100%" height={240}>
             <LineChart data={chartData} style={{ fontSize: 12 }}>
                 <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16}/>
@@ -77,7 +77,7 @@ export function RevenueChart() {
 
             </LineChart>
           </ResponsiveContainer>
-          )}
+           )}
         </CardContent>
         </Card>
     )
