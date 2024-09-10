@@ -13,7 +13,7 @@ describe('Order Status', () => {
         expect(badgeElement).toHaveClass("bg-slate-400")
     })    
         
-    it('should display the right text  when order status is canceled', () => {
+    it('should display the right text when order status is canceled', () => {
         // Canceled
 
         const wrapper = render(<OrderStatus status="canceled" />)
@@ -25,7 +25,7 @@ describe('Order Status', () => {
         expect(badgeElement).toHaveClass("bg-rose-500")
     })
 
-    it('should display the right text  when order status is delivering', () => {
+    it('should display the right text when order status is delivering', () => {
         // Delivering
 
         const wrapper = render(<OrderStatus status="delivering" />)
@@ -37,7 +37,7 @@ describe('Order Status', () => {
         expect(badgeElement).toHaveClass("bg-amber-500")
     })
 
-    it('should display the right text  when order status is processing', () => {
+    it('should display the right text when order status is processing', () => {
         // Processing
 
         const wrapper = render(<OrderStatus status="processing" />)
@@ -49,7 +49,7 @@ describe('Order Status', () => {
         expect(badgeElement).toHaveClass("bg-amber-500")
     })
 
-    it('should display the right text  when order status is delivered', () => {
+    it('should display the right text when order status is delivered', () => {
         // Delivered
 
         const wrapper = render(<OrderStatus status="delivered" />)
