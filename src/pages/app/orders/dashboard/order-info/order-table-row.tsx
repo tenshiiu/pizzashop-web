@@ -83,7 +83,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
          <TableCell>
              <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
                  <DialogTrigger asChild>
-                     <Button variant="outline" size="xs">
+                     <Button variant="outline" size="lg">
                          <Search className="h-3 w-3"/>
                          <span className="sr-only">Detalhes do pedido</span>
                      </Button>
@@ -120,7 +120,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
                 onClick={() => ApproveOrderFn({ orderId: order.orderId} )} 
                 disabled={isApprovingOrder} 
                 variant="outline" 
-                size="xs">
+                size="lg">
                 <ArrowRight className="mr-2 h-3 w-3"/>     
                     Aprovar
             </Button>
@@ -131,7 +131,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
                 onClick={() => DispatchOrderFn({ orderId: order.orderId} )} 
                 disabled={isDispatchingOrder} 
                 variant="outline" 
-                size="xs">
+                size="lg">
                 <ArrowRight className="mr-2 h-3 w-3"/>     
                     Em entrega
             </Button>
@@ -142,7 +142,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
                 onClick={() => DeliverOrderFn({ orderId: order.orderId} )} 
                 disabled={isDeliveringOrder} 
                 variant="outline" 
-                size="xs">
+                size="lg">
                 <ArrowRight className="mr-2 h-3 w-3"/>     
                     Entregue
             </Button>
@@ -156,7 +156,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
              }
              onClick={() => CancelOrderFn ({ orderId: order.orderId })}
              variant="outline" 
-             size="xs">
+             size="lg">
              <X className="mr-2 h-3 w-3"/>
              Cancelar
              </Button>
