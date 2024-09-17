@@ -38,4 +38,4 @@ export function DayOrdersAmountCard() {
          </CardContent>
         </Card>
     )
-}
+}  

@@ -4,7 +4,7 @@ import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHead
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Textarea } from "./ui/textarea"
-import { getManagedRestaurant, GetManagedRestaurantResponse } from "@/api/get-maneged-restaurant"
+import { getManagedRestaurant, GetManagedRestaurantResponse } from "@/api/get-managed-restaurant"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
